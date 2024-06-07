@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.yupi.yupao.model.domain.Tag;
 
 import java.util.List;
+import java.util.Map;
 
 /**
 * @author Ziio
@@ -12,9 +13,16 @@ import java.util.List;
 */
 public interface TagService extends IService<Tag> {
     /**
-     * tags 去重
+     * tags 筛选
      * @param tags
      * @return
      */
-    List<Tag> filterTags(List<String> tags);
+    Map<Boolean, List<Tag>> filterTags(List<Tag> tags);
+
+    /**
+     * add tags
+     * @param tags
+     * @return
+     */
+    boolean saveTags(List<Tag> tags);
 }

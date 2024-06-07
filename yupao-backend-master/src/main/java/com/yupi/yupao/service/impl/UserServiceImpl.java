@@ -54,6 +54,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
      */
     private static final String SALT = "yupi";
 
+    // todo : 两插入，考不考虑事务回滚
     @Override
     public long userRegister(String userAccount, String userPassword, String checkPassword,String tags) {
         // 1. 校验
@@ -83,17 +84,19 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         if (count > 0) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "账号重复");
         }
-        // 2. tags 排重，插入tag table
+
+        // 2. 数据处理(加密，json to list)
+        String encryptPassword = DigestUtils.md5DigestAsHex((SALT + userPassword).getBytes());
         // 转 json 为 list
         Gson gson = new Gson();
-        List<String> tagList = gson.fromJson(tags, new TypeToken<List<String>>() {
+        List<String> tagNameList = gson.fromJson(tags, new TypeToken<List<String>>() {
         }.getType());
-        // 排重
-        List<Tag> newTags = tagService.filterTags(tagList);
-        // todo: 如何将list<tag> 转化回 json 字符串?
-        // 2. 加密
-        String encryptPassword = DigestUtils.md5DigestAsHex((SALT + userPassword).getBytes());
-        // 3. 插入数据
+        List<Tag> tagList = tagNameList.stream().map(tagName->{
+            Tag tag = new Tag();
+            tag.setTagName(tagName);
+            return tag;
+        }).collect(Collectors.toList());
+        // 3. 插入 user 数据
         User user = new User();
         user.setUserAccount(userAccount);
         user.setUserPassword(encryptPassword);
@@ -102,10 +105,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         if (!saveResult) {
             return -1;
         }
+        // 4. 插入 tags 数据
+        tagService.saveTags(tagList);
         return user.getId();
     }
-
-    // [加入编程导航](https://www.code-nav.cn/) 入门捷径+交流答疑+项目实战+求职指导，帮你自学编程不走弯路
 
     @Override
     public User userLogin(String userAccount, String userPassword, HttpServletRequest request) {

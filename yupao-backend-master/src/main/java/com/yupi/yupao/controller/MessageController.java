@@ -13,6 +13,7 @@ import com.yupi.yupao.model.dto.TeamQuery;
 import com.yupi.yupao.model.request.TeamUpdateRequest;
 import com.yupi.yupao.model.vo.TeamUserVO;
 import com.yupi.yupao.service.MessageService;
+import com.yupi.yupao.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +34,6 @@ public class MessageController {
 
     @Resource
     private MessageService messageService;
-
 
     @PostMapping("/add")
     public BaseResponse<Long> addTeam(@RequestBody Message message, HttpServletRequest request) {

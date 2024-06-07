@@ -10,6 +10,7 @@ import com.yupi.yupao.model.domain.User;
 import com.yupi.yupao.model.request.UserLoginRequest;
 import com.yupi.yupao.model.request.UserRegisterRequest;
 import com.yupi.yupao.model.vo.UserVO;
+import com.yupi.yupao.service.TagService;
 import com.yupi.yupao.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -42,7 +43,11 @@ public class UserController {
     private UserService userService;
 
     @Resource
+    private TagService tagService;
+
+    @Resource
     private RedisTemplate<String, Object> redisTemplate;
+
 
     @PostMapping("/register")
     public BaseResponse<Long> userRegister(@RequestBody UserRegisterRequest userRegisterRequest) {
@@ -56,6 +61,7 @@ public class UserController {
         if (StringUtils.isAnyBlank(userAccount, userPassword, checkPassword)) {
             return null;
         }
+        // Tag numbers ++ and add in UserTable
         long result = userService.userRegister(userAccount, userPassword, checkPassword,tags);
         return ResultUtils.success(result);
     }
