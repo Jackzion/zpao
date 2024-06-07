@@ -1,5 +1,5 @@
 <template>
-  <user-card-list :user-list="userList" :loading="loading"/>
+  <user-card-list :user-list="userList" :loading="loading" :type="1"/>
   <van-empty v-if="!userList || userList.length < 1" description="数据为空"/>
 </template>
 
