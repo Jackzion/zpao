@@ -17,7 +17,9 @@ import java.util.List;
 public interface FriendMapper extends BaseMapper<Friend> {
 
     // 获得好友列表的详细信息
-    List<User> selectUserWithFriends(Long userId,int isFriend);
+    List<User> selectUserWithFriends(Long userId);
+
+    List<User> selectUserWithNonFriends(Long userId);
 }
 
 

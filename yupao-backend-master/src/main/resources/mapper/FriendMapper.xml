@@ -21,6 +21,10 @@
     </sql>
     <select id="selectUserWithFriends" resultType="com.yupi.yupao.model.domain.User">
         SELECT u.* FROM user u LEFT JOIN  friend f ON f.toUserId = u.id
-                   WHERE f.createUserId = #{userId} and f.status = #{isFriend};
+                   ( WHERE f.createUserId = #{userId} or f.toUserId = #{userId} )and f.status = 1;
+    </select>
+    <select id="selectUserWithNonFriends" resultType="com.yupi.yupao.model.domain.User">
+        SELECT u.* FROM user u LEFT JOIN  friend f ON f.createUserId = u.id
+        WHERE f.toUserId = #{userId} and f.status = 0 and f.isDeleted = 0;
     </select>
 </mapper>
