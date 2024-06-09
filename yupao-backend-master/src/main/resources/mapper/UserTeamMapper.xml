@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- @author <a href="https://github.com/liyupi">程序员鱼皮</a> -->
-<!-- @from <a href="https://yupi.icu">编程导航知识星球</a> -->
+
+
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yupi.yupao.mapper.UserTeamMapper">
+<mapper namespace="com.ziio.zpao.mapper.UserTeamMapper">
 
 <!-- 原_创 【鱼_皮】https://yupi.icu/ -->
 
-    <resultMap id="BaseResultMap" type="com.yupi.yupao.model.domain.UserTeam">
+    <resultMap id="BaseResultMap" type="com.ziio.zpao.model.domain.UserTeam">
             <id property="id" column="id" jdbcType="BIGINT"/>
             <result property="userId" column="userId" jdbcType="BIGINT"/>
             <result property="teamId" column="teamId" jdbcType="BIGINT"/>

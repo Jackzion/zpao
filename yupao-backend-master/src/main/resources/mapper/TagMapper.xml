@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yupi.yupao.mapper.TagMapper">
+<mapper namespace="com.ziio.zpao.mapper.TagMapper">
 
-    <resultMap id="BaseResultMap" type="com.yupi.yupao.model.domain.Tag">
+    <resultMap id="BaseResultMap" type="com.ziio.zpao.model.domain.Tag">
             <id property="id" column="id" jdbcType="BIGINT"/>
             <result property="tagName" column="tagName" jdbcType="VARCHAR"/>
             <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>

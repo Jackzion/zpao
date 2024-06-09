@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yupi.yupao.mapper.MessageMapper">
+<mapper namespace="com.ziio.zpao.mapper.MessageMapper">
 
-    <resultMap id="BaseResultMap" type="com.yupi.yupao.model.domain.Message">
+    <resultMap id="BaseResultMap" type="com.ziio.zpao.model.domain.Message">
             <id property="id" column="id" jdbcType="BIGINT"/>
             <result property="text" column="text" jdbcType="VARCHAR"/>
             <result property="userId" column="userId" jdbcType="BIGINT"/>
