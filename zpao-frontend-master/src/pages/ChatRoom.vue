@@ -13,14 +13,14 @@
             :class="{'my-message': String(message.userId) === String(user.id), 'other-message': String(message.userId) !== String(user.id)}"
             class="message-container"
         >
-          <img :src="message.userAvatar" alt="Avatar" class="avatar">
-          <div class="message-content">
-            <div class="message-header">
-              <span class="username">{{ message.userName }}</span>
-              <span class="timestamp">{{ formatDate(message.createTime) }}</span>
+            <img :src="message.userAvatar" alt="Avatar" class="avatar">
+            <div class="message-content">
+              <div class="message-header">
+                <span class="username">{{ message.userName }}</span>
+                <span class="timestamp">{{ formatDate(message.createTime) }}</span>
+              </div>
+              <p class="message-text">{{ message.text }}</p>
             </div>
-            <p class="message-text">{{ message.text }}</p>
-          </div>
         </div>
       </scroll-view>
     </div>
@@ -71,18 +71,18 @@ onMounted(async () => {
 
 
 const sendMessage = () => {
-    // todo ： 发送给后端要不要封装类？
-    const message = {
-      // type: "message",
-      userId: user.value.id,
-      userName: user.value.username,
-      userAvatar:user.value.avatarUrl,
-      text: text.value,
-    };
-    const res =  myAxios.post("/message/add",message);
-    webSocketService.sendMessage(message);
-    // 发 http 请求 保存聊天记录
-    text.value = "";
+  // todo ： 发送给后端要不要封装类？
+  const message = {
+    // type: "message",
+    userId: user.value.id,
+    userName: user.value.username,
+    userAvatar:user.value.avatarUrl,
+    text: text.value,
+  };
+  const res =  myAxios.post("/message/add",message);
+  webSocketService.sendMessage(message);
+  // 发 http 请求 保存聊天记录
+  text.value = "";
 }
 // 发送进入信息
 const sendJoinMessage = () => {

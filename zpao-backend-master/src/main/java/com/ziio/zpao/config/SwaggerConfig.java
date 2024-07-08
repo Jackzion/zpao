@@ -20,7 +20,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
  */
 @Configuration
 @EnableSwagger2WebMvc
-@Profile({"dev", "test"})
 public class SwaggerConfig {
 
     @Bean(value = "defaultApi2")
@@ -29,7 +28,7 @@ public class SwaggerConfig {
                 .apiInfo(apiInfo())
                 .select()
                 // 这里一定要标注你控制器的位置
-                .apis(RequestHandlerSelectors.basePackage("com.yupi.yupao.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.ziio.zpao.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }
@@ -40,8 +39,8 @@ public class SwaggerConfig {
      */
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("鱼皮用户中心")
-                .description("鱼皮用户中心接口文档")
+                .title("用户中心")
+                .description("接口文档")
                 .termsOfServiceUrl("https://github.com/liyupi")
                 .contact(new Contact("yupi","https://github.com/liyupi","xxx@qq.com"))
                 .version("1.0")

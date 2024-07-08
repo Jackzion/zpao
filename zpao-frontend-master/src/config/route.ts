@@ -15,6 +15,7 @@ import ChatRoom from "../pages/ChatRoom.vue";
 import UserRegisPage from "../pages/UserRegisPage.vue";
 import MyFriendsPage from "../pages/MyFriendsPage.vue";
 import MyNonFriendsPage from "../pages/MyNonFriendsPage.vue";
+import UserAvatarPage from "../pages/UserAvatarPage.vue";
 
 
 const routes = [
@@ -27,6 +28,7 @@ const routes = [
     { path: '/search', title: '找伙伴', component: SearchPage },
     { path: '/user/list', title: '用户列表', component: SearchResultPage },
     { path: '/user/edit', title: '编辑信息', component: UserEditPage },
+    { path: '/user/avatar', title: '上传头像', component: UserAvatarPage },
     { path: '/user/login', title: '登录', component: UserLoginPage },
     { path: '/user/update', title: '更新信息', component: UserUpdatePage },
     { path: '/user/team/join', title: '加入队伍', component: UserTeamJoinPage },
